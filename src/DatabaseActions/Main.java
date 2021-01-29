@@ -43,16 +43,17 @@ public class Main {
     public static void main(String[] args) {
         List<Client> clientsList = null;
         try {
-            clientsList = getClients();
+
+
+            System.out.println("Modified salary for a given employee ID is now " + updateEmail("pikul_ismena@onet.pl", 1));
+             clientsList = getClients();
+              returnTable(clientsList);
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        returnTable(clientsList);
-
-
     }
-
-
 }
 
 

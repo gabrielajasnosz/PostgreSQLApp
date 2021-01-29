@@ -3,7 +3,10 @@ package DatabaseActions;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 // import com.sun.rowset.*;
+
 
 import static DatabaseActions.Main.JDBC_DRIVER;
 import static DatabaseActions.Main.DB_URL;
@@ -11,6 +14,11 @@ import static DatabaseActions.Main.USER;
 import static DatabaseActions.Main.PASS;
 
 public class Client {
+
+//    public static final String REGEX_EMAIL_VALIDATION = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-zA-Z]{2,})$";
+//    //return EMAIL_REGEX.matcher(email).matches();
+
+
 
     private int id;
     private String firstName;
@@ -159,6 +167,79 @@ public class Client {
             }
         }
         return clientsList;
+    }
+
+
+    // 2021-01-17 @TP
+    public static String updateEmail(String newEmail, int client) {
+
+        String updatedEmail = null;
+        Connection connection = null;
+        Pattern p = Pattern.compile("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
+        Matcher m = p.matcher(newEmail);
+
+        try {
+            Class.forName(JDBC_DRIVER);
+
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+
+            PreparedStatement pstmt;
+            ResultSet rs = null;
+            String sql = "UPDATE marina.klient SET email = ? WHERE id_klienta = ? RETURNING *";
+            connection.setAutoCommit(false);
+            System.out.println("Autocommit mode is set to " + connection.getAutoCommit());
+
+            pstmt = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            pstmt.clearParameters();
+            pstmt.setString(1, newEmail);
+            pstmt.setInt(2, client);
+
+            try {
+                rs = pstmt.executeQuery();
+                rs.beforeFirst();
+                if (rs.next()) {
+                    // Co oznacza wartość 6 w poniższej metodzie getDouble(6)?
+                    updatedEmail = rs.getString(5);
+                    System.out.println(updatedEmail);
+                    if (m.find()) {
+                        System.out.println("Constraint violation. Updated email is wrong");
+                        connection.rollback();
+                        updatedEmail = null;
+                    } else {
+                        connection.commit();
+                        System.out.println("Information. Updated email = " + updatedEmail);
+                    }
+                } else {
+                    System.err.println("Information. No records were updated.");
+                }
+            } catch (Exception e) {
+                System.err.println("Error. Update failed. Exception: " + e);
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    pstmt.close();
+                } catch (Exception e) {
+                    System.err.println("Error. Closing rs & pstmt. Exception: " + e);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error SQL. Exception: " + e);
+        } catch (Exception e) {
+            System.err.println("Error. Exception: " + e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                System.err.println("Error. Closing connection. Exception: " + e);
+            }
+        }
+        return updatedEmail;
     }
 
     @Override
