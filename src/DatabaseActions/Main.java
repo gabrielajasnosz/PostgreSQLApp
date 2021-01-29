@@ -57,8 +57,8 @@ public class Main {
 
 
 //            case 11: {
-//                // Przykład #11
-//                // Odczyt danych z tabeli z użyciem Statement (SENSITIVE)
+//                // PrzykĹad #11
+//                // Odczyt danych z tabeli z uĹźyciem Statement (SENSITIVE)
 //                SwingUtilities.invokeLater(new Runnable() {
 //                    @Override
 //                    public void run() {
@@ -70,7 +70,7 @@ public class Main {
 //                break;
 //            }
 //            case 12: {
-//                // Przykład #12 :: Generyczny dostęp do danych, be znajomości strktury tabeli.
+//                // PrzykĹad #12 :: Generyczny dostÄp do danych, be znajomoĹci strktury tabeli.
 //                try {
 //                    System.out.println(getEmployees().displayHTML("University employees"));
 //                } catch (Exception e) {
@@ -79,18 +79,18 @@ public class Main {
 //                break;
 //            }
 //            case 13: {
-//                // Przykład #13 :: Dostęp do danych z pełną kontrolą via Statement. Rezultat jest pojedynczą wartością.
+//                // PrzykĹad #13 :: DostÄp do danych z peĹnÄ kontrolÄ via Statement. Rezultat jest pojedynczÄ wartoĹciÄ.
 //                System.out.println("Salary for a given employee ID is " + getEmployeeSalary_Statement(1));
 //                break;
 //            }
 //
 //            case 20: {
-//                // Przykład #20 :: Dostęp do danych z pełną kontrolą via PreparedStatement. Rezultat jest pojedynczą wartością.
+//                // PrzykĹad #20 :: DostÄp do danych z peĹnÄ kontrolÄ via PreparedStatement. Rezultat jest pojedynczÄ wartoĹciÄ.
 //                System.out.println("Salary for a given employee ID is " + getEmployeeSalary_PreparedStatement(1));
 //                break;
 //            }
 //            case 21: {
-//                // Przykład #21 :: Dostęp do danych z pełną kontrolą via PreparedStatement. Rezultat jest kolekcją, w tym przypadku zbiorem wartości.
+//                // PrzykĹad #21 :: DostÄp do danych z peĹnÄ kontrolÄ via PreparedStatement. Rezultat jest kolekcjÄ, w tym przypadku zbiorem wartoĹci.
 //                System.out.println("Salary for employees with ID between LOWER_BOUND and UPER_BOUND.");
 //                List<Client> employeeList = getEmployeesSalary_PreparedStatementResultSet(4, 7);
 //                for (int row = 0; row < employeeList.size(); row++) {
@@ -99,35 +99,35 @@ public class Main {
 //                break;
 //            }
 //            case 22: {
-//                // Przykład #22 :: Zmiana danych z pełną kontrolą via PreparedStatement.
-//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane są odczytywane do ResultSet. Zmiana danych następuje z wykorzystaniem executeQuery().
+//                // PrzykĹad #22 :: Zmiana danych z peĹnÄ kontrolÄ via PreparedStatement.
+//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane sÄ odczytywane do ResultSet. Zmiana danych nastÄpuje z wykorzystaniem executeQuery().
 //                System.out.println("Modified salary for a given employee ID is now " + changeEmployeeSalary_PreparedStatement(0.1, 1));
 //                break;
 //            }
 //            case 23: {
-//                // Przykład #23 :: Zmiana danych z pełną kontrolą via PreparedStatement i ResultSet.
-//                // Zmiana danych jest wykonywana poprzez SELECT. Zmienione dane są odczytywane do ResultSet i w ResultSet zmieniane. Zmiana danych następuje z wykorzystaniem updateRow().
+//                // PrzykĹad #23 :: Zmiana danych z peĹnÄ kontrolÄ via PreparedStatement i ResultSet.
+//                // Zmiana danych jest wykonywana poprzez SELECT. Zmienione dane sÄ odczytywane do ResultSet i w ResultSet zmieniane. Zmiana danych nastÄpuje z wykorzystaniem updateRow().
 //                System.out.println("Modified salary for a given employee ID is now " + changeEmployeeSalary_PreparedStatementResultSet(0.1, 1));
 //                break;
 //            }
 //            case 24: {
-//                // Przykład #24 :: Zmiana danych z pełną kontrolą via PreparedStatement z wykorzystaniem executeUpdate().
-//                // Zmiana danych jest wykonywana poprzez UPDATE. Zmiana danych następuje z wykorzystaniem executeUpdate().
+//                // PrzykĹad #24 :: Zmiana danych z peĹnÄ kontrolÄ via PreparedStatement z wykorzystaniem executeUpdate().
+//                // Zmiana danych jest wykonywana poprzez UPDATE. Zmiana danych nastÄpuje z wykorzystaniem executeUpdate().
 //                System.out.println("Salary was modified for " + changeEmployeeSalary_PreparedStatementViaExecuteUpdate(0.1, 2000) + " employees.");
 //                break;
 //            }
 //            case 25: {
-//                // Przykład #25 :: Zmiana danych z pełną kontrolą via PreparedStatement. Problem trybu AUTCOMMIT = TRUE.
-//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane są odczytywane do ResultSet.
-//                // Metoda powinna dokonać zmiany wynagrodzenia tylko w przypadku, gdy zmienione wynagrodzenie nie przekroczy limitu 10 000 PLN.
+//                // PrzykĹad #25 :: Zmiana danych z peĹnÄ kontrolÄ via PreparedStatement. Problem trybu AUTCOMMIT = TRUE.
+//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane sÄ odczytywane do ResultSet.
+//                // Metoda powinna dokonaÄ zmiany wynagrodzenia tylko w przypadku, gdy zmienione wynagrodzenie nie przekroczy limitu 10 000 PLN.
 //                // Jakie jest wynagrodzenie pracownika ID = 54 po wykonaniu metody?
 //                System.out.println("Modified salary for a given employee ID is now " + changeSalary_RollbackError(0.25, 54));
 //                break;
 //            }
 //            case 26: {
-//                // Przykład #26 :: Zmiana danych z pełną kontrolą via PreparedStatement. Zmiana danych odbywa się w trybie AUTOCOMMIT = FALSE.
-//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane są odczytywane do ResultSet.
-//                // Metoda powinna dokonać zmiany wynagrodzenia tylko w przypadku, gdy zmienione wynagrodzenie nie przekroczy limitu 10 000 PLN.
+//                // PrzykĹad #26 :: Zmiana danych z peĹnÄ kontrolÄ via PreparedStatement. Zmiana danych odbywa siÄ w trybie AUTOCOMMIT = FALSE.
+//                // Zmiana danych jest wykonywana poprzez UPDATE. Dodatkowo zmienione dane sÄ odczytywane do ResultSet.
+//                // Metoda powinna dokonaÄ zmiany wynagrodzenia tylko w przypadku, gdy zmienione wynagrodzenie nie przekroczy limitu 10 000 PLN.
 //                double changedSalary = changeSalary_ExecuteQueryRollback(0.25, 54);
 //                if(changedSalary == -1)
 //                    System.out.println("The salary was not changed.");
@@ -136,7 +136,7 @@ public class Main {
 //                break;
 //            }
 //            case 27: {
-//                // Przykład #27 :: Kontrola nad zagnieżdżonymi transakcjami
+//                // PrzykĹad #27 :: Kontrola nad zagnieĹźdĹźonymi transakcjami
 //                long startTime = System.currentTimeMillis();
 //                changeSalaryTwice_ExecuteQueryRollback(0.1, 1);
 //                long endTime = System.currentTimeMillis();
@@ -144,18 +144,18 @@ public class Main {
 //                break;
 //            }
 //            case 28: {
-//                // Przykład #28 :: Dodanie danych via SELECT
-//                addEmployeePayment_PreparedStatementResultSet(5555, 10, 2019, "wynagrodzenie miesięczne", 1);
+//                // PrzykĹad #28 :: Dodanie danych via SELECT
+//                addEmployeePayment_PreparedStatementResultSet(5555, 10, 2019, "wynagrodzenie miesiÄczne", 1);
 //                break;
 //            }
 //            case 29: {
-//                // Przykład #29 :: Działanie ResultSet typu Sensitive
+//                // PrzykĹad #29 :: DziaĹanie ResultSet typu Sensitive
 //                break;
 //            }
 //
 //            case 40: {
-//                // Przykład #40
-//                // Obserwacja widoczności zmiany wprowadzanych przez metodę changeSalary_ExecuteQueryRollback()
+//                // PrzykĹad #40
+//                // Obserwacja widocznoĹci zmiany wprowadzanych przez metodÄ changeSalary_ExecuteQueryRollback()
 //                SwingUtilities.invokeLater(new Runnable() {
 //                    @Override
 //                    public void run() {
@@ -174,7 +174,7 @@ public class Main {
 //            }
 //
 //            case 50: {
-//                // Przykład #50 :: Używanie puli połączeń
+//                // PrzykĹad #50 :: UĹźywanie puli poĹÄczeĹ
 //                // Inicjalizacja puli.
 //                ConnectionPool cp = new ConnectionPool();
 //                try {
@@ -196,13 +196,13 @@ public class Main {
 //                    System.err.println("Error. JDBC loading error. " + e);
 //                }
 //
-//                // Użycie połączeń z puli.
+//                // UĹźycie poĹÄczeĹ z puli.
 //                java.sql.Connection con1 = null;
 //                java.sql.Connection con2 = null;
 //                try {
 //                    con1 = cp.getConnection();
 //                    con2 = cp.getConnection();
-//                    // Obsługa transakcji
+//                    // ObsĹuga transakcji
 //                } catch (Exception e) {
 //                    System.err.println("Error. Getting connection. " + e);
 //                } finally {
@@ -210,7 +210,7 @@ public class Main {
 //                    cp.releaseConnection(con2);
 //                }
 //
-//                // Zamknięcie puli.
+//                // ZamkniÄcie puli.
 //                cp.emptyPool();
 //                break;
 //            }
