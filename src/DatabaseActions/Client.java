@@ -25,20 +25,19 @@ public class Client {
     private String address;
 
 
-
     public Client() {
     }
 
-    public Client(int id_klienta, String imie, String nazwisko, String telefon, String email,String pesel,String login,String haslo,String adres) {
+    public Client(int id_klienta, String imie, String nazwisko, String telefon, String email, String pesel, String login, String haslo, String adres) {
         this.id = id_klienta;
         this.firstName = imie;
         this.lastName = nazwisko;
         this.phoneNumber = telefon;
         this.email = email;
-        this.pesel =pesel;
+        this.pesel = pesel;
         this.login = login;
         this.password = haslo;
-        this.address=adres;
+        this.address = adres;
 
     }
 
@@ -117,11 +116,11 @@ public class Client {
 
     public static List<Client> getClients() throws SQLException {
 
-        Connection connection = DriverManager.getConnection(DB_URL,USER,PASS);
+        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt = null;
         ResultSet results = null;
         List<Client> clientsList = new ArrayList<>();
-        String address=null;
+        String address = null;
 
         try {
             Class.forName(JDBC_DRIVER);
@@ -131,12 +130,12 @@ public class Client {
 
 
             while (results.next()) {
-                address=results.getString("ulica")+" "+ results.getString("dom")+"/"+results.getString("lokal") + " "+ results.getString("kod_pocztowy") + " "+  results.getString("miejscowosc");
+                address = results.getString("ulica") + " " + results.getString("dom") + "/" + results.getString("lokal") + " " + results.getString("kod_pocztowy") + " " + results.getString("miejscowosc");
                 Client row = new Client(results.getInt("id_klienta"),
-                        results.getString("imie"),results.getString("nazwisko"),
+                        results.getString("imie"), results.getString("nazwisko"),
                         results.getString("telefon"), results.getString("email"),
-                        results.getString("pesel"),results.getString("login"),
-                        results.getString("haslo"),address);
+                        results.getString("pesel"), results.getString("login"),
+                        results.getString("haslo"), address);
                 clientsList.add(row);
             }
 
@@ -164,12 +163,11 @@ public class Client {
     }
 
 
-    // 2021-01-17 @TP
     public static String updateEmail(String newEmail, int client) {
 
         String updatedEmail = null;
         Connection connection = null;
-        String regex="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
 
         try {
@@ -251,7 +249,7 @@ public class Client {
                     "VALUES(?,?,?::daterange,?);";
             pstmt = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE, ResultSet.FETCH_FORWARD);
             pstmt.clearParameters();
-            pstmt.setInt(1,charter.getYacht_id());
+            pstmt.setInt(1, charter.getYacht_id());
             pstmt.setInt(2, charter.getClient_id());
             pstmt.setString(3, charter.getCharter_daterange());
             pstmt.setInt(4, charter.getStatus_id());
@@ -274,8 +272,6 @@ public class Client {
                 }
                 if (connection != null && !connection.isClosed()) {
                     connection.close();
-                    System.out.println("---  Person added  ---");
-                    // Dodanie rekordu do DB?
                 }
             } catch (Exception e) {
                 System.out.println("Error. Closing rs & stmt & connection. Exception: " + e);
@@ -300,7 +296,7 @@ public class Client {
                     "VALUES(?,?::daterange);";
             pstmt = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE, ResultSet.FETCH_FORWARD);
             pstmt.clearParameters();
-            pstmt.setInt(1,charter.getClient_id());
+            pstmt.setInt(1, charter.getClient_id());
             pstmt.setString(2, charter.getCharter_daterange());
 
 

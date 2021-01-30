@@ -19,7 +19,6 @@ public class Charter {
     int status_id;
 
 
-
     public Charter(int yacht_id, int client_id, String charter_daterange, int status_id) {
         this.yacht_id = yacht_id;
         this.client_id = client_id;
