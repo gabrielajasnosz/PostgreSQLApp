@@ -45,7 +45,7 @@ public class Main {
         try {
 
 
-            System.out.println("Modified salary for a given employee ID is now " + updateEmail("pikul_ismena@onet.pl", 1));
+            System.out.println("Modified Email is: " + updateEmail("user78@gmail.com", 1));
              clientsList = getClients();
               returnTable(clientsList);
 

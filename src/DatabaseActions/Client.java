@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-// import com.sun.rowset.*;
 
 
 import static DatabaseActions.Main.JDBC_DRIVER;
@@ -14,11 +13,6 @@ import static DatabaseActions.Main.USER;
 import static DatabaseActions.Main.PASS;
 
 public class Client {
-
-//    public static final String REGEX_EMAIL_VALIDATION = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-zA-Z]{2,})$";
-//    //return EMAIL_REGEX.matcher(email).matches();
-
-
 
     private int id;
     private String firstName;
@@ -175,8 +169,8 @@ public class Client {
 
         String updatedEmail = null;
         Connection connection = null;
-        Pattern p = Pattern.compile("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
-        Matcher m = p.matcher(newEmail);
+        String regex="^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
 
         try {
             Class.forName(JDBC_DRIVER);
@@ -199,13 +193,13 @@ public class Client {
                 rs = pstmt.executeQuery();
                 rs.beforeFirst();
                 if (rs.next()) {
-                    // Co oznacza wartość 6 w poniższej metodzie getDouble(6)?
                     updatedEmail = rs.getString(5);
                     System.out.println(updatedEmail);
-                    if (m.find()) {
+                    if (!updatedEmail.matches(regex)) {
                         System.out.println("Constraint violation. Updated email is wrong");
-                        connection.rollback();
                         updatedEmail = null;
+                        connection.rollback();
+
                     } else {
                         connection.commit();
                         System.out.println("Information. Updated email = " + updatedEmail);
