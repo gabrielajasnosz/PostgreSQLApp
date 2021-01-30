@@ -4,6 +4,7 @@ import DatabaseActions.Client;
 import DatabaseActions.ClientTableModel;
 
 import static DatabaseActions.Client.*;
+import static DatabaseActions.Charter.*;
 
 import java.sql.SQLException;
 import java.util.List;
